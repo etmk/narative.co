@@ -17,7 +17,7 @@ module.exports.HTMLRendererOpts = {
     [BLOCKS.EMBEDDED_ENTRY]: node => {
       if (!node.data.target.fields) return null
 
-      let { align, image, text, id } = node.data.target.fields
+      let { align, showDescription, image, text, id } = node.data.target.fields
       const contentfulId = node.data.target.sys.contentType.sys.id
 
       if (contentfulId === 'code') {
@@ -60,6 +60,7 @@ module.exports.HTMLRendererOpts = {
 
       if (image && image.en && contentfulId === 'articleImage') {
         let { file, title, description } = image.en.fields
+
         // Sometimes the file and filename exist outside of a locale (I don't know why! Previews are an example)
         // So here we just reprogram file to either be _just_ file or the en locale version of file
         file = file.en || file
@@ -77,13 +78,16 @@ module.exports.HTMLRendererOpts = {
 
         // Make the img tag that will be returned either way
         const img = `<img src="${src}" alt="${caption}" class="image__${className}" />`
+        const figcaption = `<figcaption>${
+          showDescription && showDescription.en ? caption : ''
+        }</figcaption>`
 
         // If there is a description, then we want to render that as a <caption>
         if (caption && caption.en !== '') {
           return `
           <figure>
             ${img}
-            <figcaption>${caption}</figcaption>
+            ${figcaption}
           </figure>
         `
         } else {

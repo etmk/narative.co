@@ -39,6 +39,9 @@ function LabsPage({ data, location }) {
     theme: 'light',
     offset: true,
   }
+  const footerConfig = {
+    visible: true,
+  }
 
   // Fade in the text as we do on all the headings
   const [animation, setAnimation] = useState('')
@@ -101,7 +104,7 @@ function LabsPage({ data, location }) {
   ]
 
   return (
-    <Layout nav={navConfig} background={pageBackground}>
+    <Layout nav={navConfig} background={pageBackground} footer={footerConfig}>
       <>
         <SEO
           title={seo.title}

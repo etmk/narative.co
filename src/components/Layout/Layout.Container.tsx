@@ -53,7 +53,7 @@ class LayoutContainer extends Component<LayoutProps, LayoutState> {
       low: false,
     },
     footer: {
-      visible: true,
+      visible: false,
       theme: 'dark',
     },
   }

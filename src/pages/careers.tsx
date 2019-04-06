@@ -18,8 +18,12 @@ function CareersPage({ data, location }) {
     theme: 'light',
   }
 
+  const footerConfig = {
+    visible: true,
+  }
+
   return (
-    <Layout background={pageBackground} nav={navConfig}>
+    <Layout background={pageBackground} nav={navConfig} footer={footerConfig}>
       <SEO
         title={contentful.seo.title}
         description={contentful.seo.description}
