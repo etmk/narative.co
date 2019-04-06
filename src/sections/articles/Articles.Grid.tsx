@@ -37,11 +37,11 @@ const ArticlesGrid = ({ articles }: { articles: IArticleNode[] }) => {
         <GridItem article={articles[3]} />
       </Grid>
       <HorizontalRule>
-        <div>From our clients</div>
+        <h2>From our clients</h2>
       </HorizontalRule>
       <Testimonial />
       <HorizontalRule>
-        <div>More from Narative</div>
+        <h2>More from Narative</h2>
       </HorizontalRule>
       <Grid>
         <GridItem article={articles[4]} />
@@ -340,10 +340,11 @@ const HorizontalRule = styled.div`
     background: rgba(0, 0, 0, 0.25);
   }
 
-  & > div {
+  & > h2 {
     position: relative;
     display: inline-block;
     background: #fafafa;
+    font-weight: 400;
     z-index: 0;
     width: ${(230 / 1140) * 100}%;
 

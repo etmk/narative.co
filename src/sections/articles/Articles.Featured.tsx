@@ -22,7 +22,9 @@ const ArticlesFeatured = ({ article }: { article: IArticleNode }) => (
       <StyledLink to={`/articles/${article.slug}`}>
         <Left>
           <SuperScript>Featured article</SuperScript>
-          <FeaturedTitle dark>{article.title}</FeaturedTitle>
+          <FeaturedTitle styles="h2" dark>
+            {article.title}
+          </FeaturedTitle>
           <Excerpt>{article.excerpt}</Excerpt>
           <ButtonArrow
             text="Read more"
@@ -82,7 +84,7 @@ const StyledLink = styled(Link)`
   }
 `
 
-const FeaturedTitle = styled(Heading.h2)`
+const FeaturedTitle = styled(Heading.h3)`
   margin-bottom: 15px;
   transition: color 0.3s ease-in-out;
 `
@@ -108,11 +110,13 @@ const Right = styled.div`
   `}
 `
 
-const SuperScript = styled.div`
+const SuperScript = styled.h2`
   position: relative;
   display: inline-block;
   margin-bottom: 65px;
   opacity: 0.25;
+  font-weight: 400;
+  color: #000;
 
   &::after {
     content: '';

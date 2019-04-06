@@ -121,7 +121,7 @@ const HeroTitle = styled(Heading.h1)`
 
 const HeroSubtitle = styled.div`
   font-size: 18px;
-  color: rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.3);
   font-weight: 800;
 `
 
@@ -140,7 +140,7 @@ const ReadingTime = styled.div`
   left: 51px;
   position: absolute;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.3);
 `
 
 const Image = styled.div`

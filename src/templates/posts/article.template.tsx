@@ -206,10 +206,11 @@ const NextArticle = styled(Section)`
   display: block;
 `
 
-const FooterNext = styled.div`
+const FooterNext = styled.h2`
   position: relative;
   opacity: 0.25;
   margin-bottom: 100px;
+  font-weight: 400;
   color: ${p => p.theme.mode.text};
 
   ${mediaqueries.tablet`

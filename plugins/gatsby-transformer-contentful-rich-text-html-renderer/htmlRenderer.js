@@ -76,7 +76,7 @@ module.exports.HTMLRendererOpts = {
         const caption = description
 
         // Make the img tag that will be returned either way
-        const img = `<img src="${src}" alt="${alt}" class="image__${className}" />`
+        const img = `<img src="${src}" alt="${caption}" class="image__${className}" />`
 
         // If there is a description, then we want to render that as a <caption>
         if (caption && caption.en !== '') {

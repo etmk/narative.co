@@ -17,7 +17,7 @@ export default ({ mode, toggleMode }) => (
 )
 
 const DarkModeSelect = ({ toggleMode, mode }) => (
-  <IconWrapper mode={mode} onClick={toggleMode}>
+  <IconWrapper mode={mode} onClick={toggleMode} tabIndex={1}>
     <MoonOrSun isDarkMode={mode === 'dark'} />
     <MoonMask isDarkMode={mode === 'dark'} />
   </IconWrapper>
@@ -50,7 +50,11 @@ class ShareButton extends Component {
     const Icon = mode === 'dark' ? ShareDarkModeOffIcon : ShareDarkModeOnIcon
 
     return (
-      <IconWrapper mode={mode} onClick={this.copyToClipboardOnClick}>
+      <IconWrapper
+        mode={mode}
+        onClick={this.copyToClipboardOnClick}
+        tabIndex={-1}
+      >
         <Icon />
         <ToolTip mode={mode} hasCopied={this.state.hasCopied}>
           Copied
