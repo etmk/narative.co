@@ -33,7 +33,9 @@ const Logo = ({
           viewBox="0 0 23 30"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
+          <title>Narative</title>
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -70,7 +72,9 @@ const Logo = ({
       viewBox="0 0 114 23"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
+      <title>Narative</title>
       <path
         d="M38.3144 9.97041C38.3144 8.64128 37.9459 8.14924 36.9618 8.14924C36.1247 8.14924 35.1151 8.61785 34.4058 9.18443V16.9612L35.8585 17.1592V18.6354H30.1074V17.1592L31.6091 16.9612V8.22805L30.1074 7.90855V6.1811H33.9415L34.2546 7.64443C35.3856 6.56024 36.6423 5.87012 38.144 5.87012C39.9886 5.87012 41.0962 6.90531 41.0962 9.06515V16.9612L42.5979 17.1592V18.6354H38.3144V9.97041Z"
         fill={fill}

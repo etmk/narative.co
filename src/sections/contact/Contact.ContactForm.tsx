@@ -12,6 +12,7 @@ import {
   Form,
   SocialLinks,
 } from '@components'
+import Hidden from '@components/Hidden'
 import mediaqueries from '@styles/media'
 import { apiCall, startAnimation } from '@utils'
 import { SubmittedCheckIcon } from '../../icons/ui'
@@ -184,7 +185,8 @@ const ContactByEmail = ({ animation }) => (
         >
           Prefer to send us an email instead?{' '}
           <button>
-            <address>contact@narative.co</address>
+            contact@narative.co{' '}
+            <Hidden>Copy contact@narative.co go clipboard.</Hidden>
           </button>
         </CopyToClipboard>
       </ContactWithEmailText>

@@ -30,6 +30,17 @@ const galleryQuery = graphql`
   }
 `
 
+const galleryDescriptions = [
+  'Narative team members looking at new tech products',
+  'Mack telling a funny story at a team dinner',
+  'Narative directing an onsite photoshoot',
+  'Soya, our beloved cat',
+  'Narative team working together at a Cafe',
+  'Narative team out for dinner',
+  'Narative working on the assets for Hopper.com',
+  'Narative team visits the Hopper office',
+]
+
 /**
  * Careers Body
  * - Why Narative
@@ -72,7 +83,10 @@ function CareersBody() {
               Since we're all remote, it's always a party when the team gets
               together. And we like food... a lot.
             </SectionCopy>
-            <CareersImages images={gallery.edges} />
+            <CareersImages
+              images={gallery.edges}
+              descriptions={galleryDescriptions}
+            />
           </CareersRow>
 
           {/* Graph with Studio and Labs */}
@@ -90,7 +104,7 @@ function CareersBody() {
           </CareersRow>
           <CareersGraph />
 
-          {/* Careers */}
+          {/* Get a job at Narative */}
           <CareersRow header="Say hello">
             <SectionCopy maxWidth="67rem">
               If you have the devotion, the curiosity and the desire to build
@@ -125,7 +139,7 @@ const SectionCopy = styled.p`
   `};
 `
 
-const WhatWeDoList = styled.ul`
+const WhatWeDoList = styled.div`
   width: 38rem;
   list-style: none;
 

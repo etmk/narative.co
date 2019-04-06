@@ -176,22 +176,31 @@ class Navigation extends Component<{}, NavigationState> {
                     <Logo fill={fill} />
                   </LogoContainer>
                 </LogoMask>
-                <Nav>
-                  <DesktopNavList>
-                    <NavItems
-                      active={active}
-                      handleClick={this.navigateOut}
-                      handleOutsideClick={this.handleOutsideClick}
-                    />
-                  </DesktopNavList>
+                <Right>
                   <ToggleContainer
                     onClick={this.handleToggleClick}
                     aria-label="Mobile Navigation Button"
+                    air-expanded={active}
+                    aria-haspopup="true"
+                    aria-controls="menu-list"
                   >
-                    <LeftToggle active={active} ref={this.leftToggle} />
-                    <RightToggle active={active} />
+                    <LeftToggle
+                      active={active}
+                      ref={this.leftToggle}
+                      aria-hidden="true"
+                    />
+                    <RightToggle active={active} aria-hidden="true" />
                   </ToggleContainer>
-                </Nav>
+                  <Nav>
+                    <DesktopNavList id="menu-list">
+                      <NavItems
+                        active={active}
+                        handleClick={this.navigateOut}
+                        handleOutsideClick={this.handleOutsideClick}
+                      />
+                    </DesktopNavList>
+                  </Nav>
+                </Right>
               </NavContainer>
             </Section>
           </NavFixedContainer>
@@ -218,6 +227,7 @@ const NavItems = ({ active, handleClick, handleOutsideClick }) => {
             to={nav.to}
             delay={delay}
             as={Link}
+            tabindex={active ? 0 : -1}
             onClick={event => {
               event.preventDefault()
               toggleContact()
@@ -241,6 +251,7 @@ const NavItems = ({ active, handleClick, handleOutsideClick }) => {
           to={nav.to}
           delay={delay}
           as={Link}
+          tabindex={active ? 0 : -1}
           onClick={event => handleClick(event, nav.to)}
           getProps={({ isPartiallyCurrent }) =>
             isPartiallyCurrent ? { ['data-active']: 'true' } : null
@@ -297,18 +308,34 @@ const LogoBack = styled.button`
 `
 
 const LogoContainer = styled(Link)`
+  position: relative;
   transition: opacity 0.3s var(--ease-out-quad);
   max-width: 114px;
 
   &:hover {
     opacity: 0.6;
   }
+
+  &:focus::after {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -42%;
+    width: 120%;
+    height: 200%;
+    border: 1px solid ${p => p.theme.colors.purple};
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 5px;
+  }
 `
 
 const LogoMask = styled.div`
   display: inline-block;
   max-width: 114px;
-  overflow: hidden;
+
+  ${mediaqueries.tablet`
+    overflow: hidden;
+  `}
 `
 
 const ToggleContainer = styled.button`
@@ -317,6 +344,18 @@ const ToggleContainer = styled.button`
   width: 40px;
   right: -10px;
   cursor: pointer;
+
+  &:focus::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid ${p => p.theme.colors.purple};
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 5px;
+  }
 
   ${mediaqueries.phablet`
     width: 30px;
@@ -380,9 +419,12 @@ const RightToggle = styled(Toggle)`
   }
 `
 
-const Nav = styled.nav`
+const Nav = styled.nav``
+
+const Right = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: row-reverse;
 `
 
 const DesktopNavList = styled.ul`
@@ -458,6 +500,22 @@ const NavAnchor = styled.a`
 
   &:hover {
     opacity: ${p => (p.disabled ? 0.15 : 0.6)};
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus::after {
+    content: '';
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    height: 1px;
+    width: 20px;
+    background: ${p => p.theme.color};
   }
 
   ${mediaqueries.phablet`

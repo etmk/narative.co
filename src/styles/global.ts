@@ -106,6 +106,10 @@ export const GlobalStyles = createGlobalStyle`
     color: ${theme.colors.black};
   }
 
+  a:focus {
+    outline: none;
+  }
+
   p {
     color: ${theme.colors.black};
     font-size: 1.8rem;

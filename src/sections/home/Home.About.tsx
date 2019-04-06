@@ -232,7 +232,7 @@ const Slash = () => (
       y="69.25"
       width="290.5"
       height="0.5"
-      fill="#7A8085"
+      fill="#73737D"
       stroke="#93C3EA"
       strokeWidth="0.5"
     />
@@ -241,7 +241,7 @@ const Slash = () => (
       y="391.25"
       width="290.5"
       height="0.5"
-      fill="#7A8085"
+      fill="#73737D"
       stroke="#93C3EA"
       strokeWidth="0.5"
     />
@@ -251,7 +251,7 @@ const Slash = () => (
       width="314.459"
       height="0.54123"
       transform="rotate(90 336.771 73.2706)"
-      fill="#7A8085"
+      fill="#73737D"
       stroke="#93C3EA"
       strokeWidth="0.54123"
     />
@@ -261,7 +261,7 @@ const Slash = () => (
       width="314.459"
       height="0.54123"
       transform="rotate(90 38.7706 73.2706)"
-      fill="#7A8085"
+      fill="#73737D"
       stroke="#93C3EA"
       strokeWidth="0.54123"
     />

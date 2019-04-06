@@ -122,7 +122,7 @@ const StyledLink = styled(Link)`
     ${p => p.index * 28 + 175}ms;
 
   &[data-active='true'] {
-    color: #7a8085;
+    color: #73737d;
   }
 
   padding: 15px;

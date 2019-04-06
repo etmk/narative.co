@@ -31,7 +31,7 @@ const InputBorder = styled.div`
   ${props =>
     props.hasError
       ? `border-bottom: 1px solid ${props.theme.colors.red}`
-      : `border-bottom: 1px solid #7A8085`};
+      : `border-bottom: 1px solid #73737D`};
 
   padding: 0.7rem 0;
 

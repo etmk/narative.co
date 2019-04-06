@@ -65,9 +65,9 @@ class Sticky extends Component<StickyProps, StickyState> {
 
     return (
       <div ref={this.element} data-component="sticky">
-        <StickyDuration height={height} disabled={disableOnMobile}>
+        <StickyDuration height={height} isDisabled={disableOnMobile}>
           <StickyItemContainer>
-            <StickyItem top={top} disabled={disableOnMobile}>
+            <StickyItem top={top} isDisabled={disableOnMobile}>
               {render(this.state)}
             </StickyItem>
           </StickyItemContainer>
@@ -83,7 +83,7 @@ const StickyDuration = styled.div`
   height: ${p => p.height || '100vh'};
 
   ${mediaqueries.tablet`
-    height: ${p => (p.disabled ? '100%' : p.height)};
+    height: ${p => (p.isDisabled ? '100%' : p.height)};
   `}
 `
 
@@ -101,7 +101,7 @@ const StickyItem = styled.div`
   justify-content: center;
 
   ${mediaqueries.tablet`
-    position: ${p => (p.disabled ? 'static' : 'sticky')};
-    display: ${p => (p.disabled ? 'block' : 'flex')};
+    position: ${p => (p.isDisabled ? 'static' : 'sticky')};
+    display: ${p => (p.isDisabled ? 'block' : 'flex')};
   `}
 `

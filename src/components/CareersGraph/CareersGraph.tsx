@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import throttle from 'lodash/throttle'
 
-import { IntersectionObserver } from '@components'
+import IntersectionObserver from '@components/IntersectionObserver'
+import Hidden from '@components/Hidden'
+
 import mediaqueries from '@styles/media'
 
 const createArrayWithLegth = length =>
@@ -44,60 +46,66 @@ class CareersGraph extends Component {
     const { animate } = this.state
 
     return (
-      <IntersectionObserver
-        render={({ visiblePercentage }) => {
-          if (!animate) {
-            this.handlePercentage(visiblePercentage)
-          }
+      <>
+        <Hidden>
+          A Graph showing the relationship of growth between Narative Labs and
+          Narative Studio.
+        </Hidden>
+        <IntersectionObserver
+          render={({ visiblePercentage }) => {
+            if (!animate) {
+              this.handlePercentage(visiblePercentage)
+            }
 
-          return (
-            <CareersGraphContainer>
-              <CareersGraphGrid ref={svg => (this.container = svg)}>
-                <CareersGraphGridRowContainer>
-                  {rows.map((item, index) => (
-                    <CareersGraphGridRow
-                      key={index}
-                      animate={animate}
-                      index={rows.length - index + 1}
-                      style={{ top: `${index * 10}%` }}
-                    />
-                  ))}
-                </CareersGraphGridRowContainer>
-                <CareersGraphGridColumnContainer animate={animate}>
-                  {columns.map((item, index) => (
-                    <CareersGraphGridColumn
-                      key={index}
-                      style={{ left: `${index * 14.028}%` }}
-                    />
-                  ))}
-                </CareersGraphGridColumnContainer>
-                <CareersGraphSVGContainer
-                  ref={svg => (this.graph = svg)}
-                  animate={animate}
-                >
-                  <CareersGraphSVG />
-                </CareersGraphSVGContainer>
-                <LabelsContainer animate={animate}>
-                  <YLabels>
-                    <YLabs>Labs</YLabs>
-                    <YStudio>Studio</YStudio>
-                  </YLabels>
-                  <XLabelsContainer>
-                    {months.map((month, index) => (
-                      <XLabels
+            return (
+              <CareersGraphContainer aria-hidden="true">
+                <CareersGraphGrid ref={svg => (this.container = svg)}>
+                  <CareersGraphGridRowContainer>
+                    {rows.map((item, index) => (
+                      <CareersGraphGridRow
                         key={index}
-                        style={{ left: `${(index * 100) / 7.3}%` }}
-                      >
-                        {month}
-                      </XLabels>
+                        animate={animate}
+                        index={rows.length - index + 1}
+                        style={{ top: `${index * 10}%` }}
+                      />
                     ))}
-                  </XLabelsContainer>
-                </LabelsContainer>
-              </CareersGraphGrid>
-            </CareersGraphContainer>
-          )
-        }}
-      />
+                  </CareersGraphGridRowContainer>
+                  <CareersGraphGridColumnContainer animate={animate}>
+                    {columns.map((item, index) => (
+                      <CareersGraphGridColumn
+                        key={index}
+                        style={{ left: `${index * 14.028}%` }}
+                      />
+                    ))}
+                  </CareersGraphGridColumnContainer>
+                  <CareersGraphSVGContainer
+                    ref={svg => (this.graph = svg)}
+                    animate={animate}
+                  >
+                    <CareersGraphSVG />
+                  </CareersGraphSVGContainer>
+                  <LabelsContainer animate={animate}>
+                    <YLabels>
+                      <YLabs>Labs</YLabs>
+                      <YStudio>Studio</YStudio>
+                    </YLabels>
+                    <XLabelsContainer>
+                      {months.map((month, index) => (
+                        <XLabels
+                          key={index}
+                          style={{ left: `${(index * 100) / 7.3}%` }}
+                        >
+                          {month}
+                        </XLabels>
+                      ))}
+                    </XLabelsContainer>
+                  </LabelsContainer>
+                </CareersGraphGrid>
+              </CareersGraphContainer>
+            )
+          }}
+        />
+      </>
     )
   }
 }

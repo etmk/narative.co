@@ -2,13 +2,14 @@ import React, { useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import Transition from 'react-transition-group/Transition'
 
+import Hidden from '@components/Hidden'
+import { ContactContext } from '@components/Contact/Contact.Context'
+
 import mediaqueries from '@styles/media'
 import { scrollable } from '@utils'
 import { ExIcon } from '../../icons/ui'
 
 import ContactForm from '../../sections/contact/Contact.ContactForm'
-
-import { ContactContext } from '@components/Contact/Contact.Context'
 
 function ContactSlideIn() {
   const { showContact, toggleContact } = useContext(ContactContext)
@@ -32,7 +33,11 @@ function ContactSlideIn() {
   }, [showContact])
 
   return (
-    <Frame>
+    <Frame tabIndex={showContact ? 0 : -1} aria-hidden={!showContact}>
+      <CloseContainer onClick={toggleContact} animation={showContact}>
+        <ExIcon />
+        <Hidden>Close Contact Form</Hidden>
+      </CloseContainer>
       <SlideIn in={showContact}>
         {showContact && (
           <FormContainer>
@@ -40,9 +45,6 @@ function ContactSlideIn() {
           </FormContainer>
         )}
       </SlideIn>
-      <CloseContainer onClick={toggleContact} animation={showContact}>
-        <ExIcon />
-      </CloseContainer>
     </Frame>
   )
 }
@@ -153,5 +155,9 @@ const CloseContainer = styled.button`
   &:hover::after {
     background: rgba(0, 0, 0, 0.03);
     transform: scale(1);
+  }
+
+  &:focus {
+    border: 2px solid ${p => p.theme.colors.purple};
   }
 `

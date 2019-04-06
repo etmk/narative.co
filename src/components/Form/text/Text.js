@@ -37,17 +37,21 @@ class Text extends Component {
             autoComplete="Off"
             allowFocus={allowFocus}
             onFocus={this.handleFocus}
+            aria-describedby={`${field.name}-error`}
             ref={this.input}
+            id={field.name}
             {...field}
             {...rest}
             autoFocus={false}
           />
           <LabelAnimation hasValue={field.value}>
-            <StyledLabel hasError={hasError}>{label}</StyledLabel>
+            <StyledLabel hasError={hasError} htmlFor={field.name}>
+              {label}
+            </StyledLabel>
           </LabelAnimation>
           <InputBorderActive hasError={hasError} />
         </InputBorder>
-        <InputError hasError={hasError}>
+        <InputError hasError={hasError} id={`${field.name}-error`}>
           {hasError && this.props.form.errors[field.name]}
         </InputError>
       </InputContainer>
@@ -117,13 +121,13 @@ const InputBorderActive = styled.div`
 const StyledLabel = styled.label`
   display: block;
   font-size: 3.2rem;
-  color: ${p => (p.hasError ? p.theme.colors.red : 'rgba(0,0,0,0.33)')};
+  color: ${p => (p.hasError ? p.theme.colors.red : 'rgba(0,0,0,0.35)')};
   border: none;
   pointer-events: none;
 
   ${mediaqueries.tablet`
     font-size: 1.6rem;
-    color: ${p => (p.hasError ? p.theme.colors.red : 'rgba(0,0,0,0.33)')};
+    color: ${p => (p.hasError ? p.theme.colors.red : 'rgba(0,0,0,0.35)')};
   `};
 `
 

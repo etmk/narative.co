@@ -27,14 +27,7 @@ export default ({
   color = 'white',
   isSubmitting,
 }: ButtonArrowProps) => (
-  <ArrowButton
-    as={as}
-    to={to}
-    onClick={onClick}
-    color={color}
-    aria-label={text}
-    role="button"
-  >
+  <ArrowButton as={as} to={to} onClick={onClick} color={color} role="button">
     {isSubmitting ? (
       <Spinner />
     ) : (
@@ -47,6 +40,7 @@ export default ({
 )
 
 const ArrowButton = styled.button`
+  position: relative;
   display: flex;
   flex-direction: row;
   font-size: 16px;
@@ -68,6 +62,18 @@ const ArrowButton = styled.button`
 
   &:focus svg {
     transform: translateX(3rem);
+  }
+
+  &:focus::after {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -50%;
+    width: 120%;
+    height: 200%;
+    border: 1px solid ${p => p.theme.colors.purple};
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 5px;
   }
 `
 

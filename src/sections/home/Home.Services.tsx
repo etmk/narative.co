@@ -311,6 +311,7 @@ function HomeServices() {
                         <StyledLink
                           onClick={toggleContact}
                           active={firstActive}
+                          tabIndex={firstActive ? 0 : -1}
                         >
                           Let’s talk about your brand
                         </StyledLink>
@@ -328,6 +329,7 @@ function HomeServices() {
                         <StyledLink
                           onClick={toggleContact}
                           active={secondActive}
+                          tabIndex={secondActive ? 0 : -1}
                         >
                           Let's build something together
                         </StyledLink>
@@ -344,6 +346,7 @@ function HomeServices() {
                         <StyledLink
                           onClick={toggleContact}
                           active={thirdActive}
+                          tabIndex={thirdActive ? 0 : -1}
                         >
                           Let’s grow your business
                         </StyledLink>
@@ -390,7 +393,7 @@ const HeadingBackground = styled.div`
   z-index: 4;
 `
 
-const LargeHeading = styled.h2`
+const LargeHeading = styled.p`
   display: inline;
   font-weight: 700;
   font-size: 80px;
@@ -465,7 +468,8 @@ const StyledLink = styled.button`
   cursor: pointer;
   pointer-events: ${p => (p.active ? 'initial' : 'none')};
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 `
@@ -476,7 +480,7 @@ const List = styled.ul`
 `
 
 const ListItem = styled.li`
-  color: #7a8085;
+  color: #73737d;
 `
 
 const Progress = styled.div`

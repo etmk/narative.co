@@ -3,9 +3,13 @@ import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Transition from 'react-transition-group/Transition'
 
+import Section from '@components/Section'
+import Layout from '@components/Layout'
+import SEO from '@components/SEO'
+import Hidden from '@components/Hidden'
+
 import transitions from '@styles/transitions'
 import mediaqueries from '@styles/media'
-import { Section, Layout, SEO } from '@components'
 import { startAnimation } from '@utils'
 import { ExIcon } from '../icons/ui'
 
@@ -72,6 +76,9 @@ class ContactPage extends Component<{}, { animation: string }> {
             pathname={this.props.location.pathname}
             image={this.props.data.contactMeta.childImageSharp.fixed.src}
           />
+          <Hidden>
+            <h1>Contact</h1>
+          </Hidden>
           <FixedElement>
             <Section>
               <PhoneFormContainer>

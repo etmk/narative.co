@@ -96,7 +96,10 @@ class CareersImages extends Component {
                       viewed={this.state.viewed}
                       style={{ left: `${index * 36}rem` }}
                     >
-                      <Img fluid={image.node.childImageSharp.fluid} />
+                      <Img
+                        fluid={image.node.childImageSharp.fluid}
+                        alt={this.props.descriptions[index]}
+                      />
                     </ImageContainer>
                   ))}
                 </GalleryContainer>
@@ -238,7 +241,7 @@ const ImageContainerMobile = styled.div`
   `};
 `
 
-const GalleryControl = styled.div`
+const GalleryControl = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,6 +267,17 @@ const GalleryControl = styled.div`
 
   opacity: ${p => (p.disabled ? 0.25 : 1)};
   transition: opacity 600ms cubic-bezier(0.7, 0, 0.2, 1);
+
+  &:focus::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid ${p => p.theme.colors.purple};
+    border-radius: 50%;
+  }
 
   ${mediaqueries.desktop`
     ${p => {
