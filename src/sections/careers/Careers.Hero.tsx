@@ -56,10 +56,10 @@ function CareersHero() {
                   <LeftContainer>
                     <TextContainer animation={animation}>
                       <Pill text="Careers" />
-                      <Heading.h1>
+                      <Heading.h2 styles="h1">
                         Narative is a tight-knit team from across the world
                         building great things.
-                      </Heading.h1>
+                      </Heading.h2>
                       <MainText>
                         We’re enthusiastic about partnering with and creating
                         brands worth believing in.

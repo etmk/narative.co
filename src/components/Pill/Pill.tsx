@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Pill = ({ text }: { text: string }) => (
   <Frame>
-    <Text>{text}</Text>
+    <Heading>{text}</Heading>
     <PillOutline aria-hidden="true" />
   </Frame>
 )
@@ -16,7 +16,7 @@ const Frame = styled.div`
   margin-bottom: 20px;
 `
 
-const Text = styled.span`
+const Heading = styled.h1`
   position: absolute;
   top: 3px;
   color: #fff;

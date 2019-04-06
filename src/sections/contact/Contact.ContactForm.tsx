@@ -266,8 +266,8 @@ const ContactWithEmail = styled.div`
   padding-top: 55px;
   margin-left: 265px;
 
-  transition: opacity 0.5s linear ${p => p.delay}ms,
-    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.9) ${p => p.delay}ms;
+  transition: opacity 0.5s linear ${p => p.delay - 200}ms,
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.9) ${p => p.delay - 200}ms;
   opacity: ${p => (p.animation ? 1 : 0)};
   transform: ${p => (p.animation ? 'translateY(0)' : 'translateY(20px)')};
 

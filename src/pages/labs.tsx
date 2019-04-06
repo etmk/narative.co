@@ -118,10 +118,10 @@ function LabsPage({ data, location }) {
               <div />
               <TextContainer animation={animation}>
                 <Pill text="Labs" />
-                <Heading.h1>
+                <Heading.h2 styles="h1">
                   Whether with our clients or all by ourselves, we're always
                   busy building something new.
-                </Heading.h1>
+                </Heading.h2>
                 <MainText>
                   Take a peek at the products we're creating in-house at
                   Narative.
