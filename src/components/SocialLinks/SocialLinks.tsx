@@ -10,6 +10,7 @@ const SocialLinks = ({ fill = 'white' }: { fill: string }) => (
     <SocialIconContainer
       target="_blank"
       rel="noopener"
+      data-a11y="true"
       aria-label="Link to Facebook"
       href={settings.urls.facebook}
     >
@@ -18,6 +19,7 @@ const SocialLinks = ({ fill = 'white' }: { fill: string }) => (
     <SocialIconContainer
       target="_blank"
       rel="noopener"
+      data-a11y="true"
       aria-label="Link to Twitter"
       href={settings.urls.twitter}
     >
@@ -26,6 +28,7 @@ const SocialLinks = ({ fill = 'white' }: { fill: string }) => (
     <SocialIconContainer
       target="_blank"
       rel="noopener"
+      data-a11y="true"
       aria-label="Link to Instagram"
       href={settings.urls.instagram}
     >
@@ -34,6 +37,7 @@ const SocialLinks = ({ fill = 'white' }: { fill: string }) => (
     <SocialIconContainer
       target="_blank"
       rel="noopener"
+      data-a11y="true"
       aria-label="Link to LinkedIn"
       href={settings.urls.linkedin}
     >
@@ -57,7 +61,7 @@ const SocialIconContainer = styled.a`
     margin-right: 0;
   }
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: -50%;

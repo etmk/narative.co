@@ -32,7 +32,7 @@ function NotFound({ data, location }) {
                 </SocialLinksContainer>
               </TextContainer>
               <ImageContainer>
-                <NotFoundIcon />
+                <NotFoundIcon aria-hidden="true" />
               </ImageContainer>
             </GridContainer>
           </Section>
@@ -91,6 +91,12 @@ const WelcomeHeader = styled(Heading.h1)`
 const TextLink = styled(Link)`
   color: #fff;
   text-decoration: underline;
+  transition: color 0.25s ease;
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.purple};
+  }
 `
 
 const TextContainer = styled.div`
@@ -117,6 +123,8 @@ const ImageContainer = styled.div`
   right: 0;
   height: calc(100vh - 130px);
   min-height: 500px;
+  pointer-events: none;
+  user-select: none;
 
   display: flex;
   align-items: center;

@@ -32,7 +32,7 @@ const Footer = ({ mode = 'dark' }: { mode?: string }) => {
       <Frame color={color}>
         <CopyRight>© {new Date().getFullYear()} Narative Studio Inc.</CopyRight>
         <Left color={color}>
-          <LogoContainer to="/">
+          <LogoContainer to="/" data-a11y="true">
             <Logo fill={color} onlySymbol />
           </LogoContainer>
           <SocialIconsFooter>
@@ -48,9 +48,10 @@ const Footer = ({ mode = 'dark' }: { mode?: string }) => {
                   color={color}
                   onClick={event => {
                     event.preventDefault()
-                    toggleContact()
+                    toggleContact(event)
                   }}
                   to={link.to}
+                  data-a11y="true"
                   getProps={({ isPartiallyCurrent }) =>
                     isPartiallyCurrent ? { ['data-active']: 'true' } : null
                   }
@@ -65,6 +66,7 @@ const Footer = ({ mode = 'dark' }: { mode?: string }) => {
                 key={link.to}
                 color={color}
                 to={link.to}
+                data-a11y="true"
                 getProps={({ isPartiallyCurrent }) =>
                   isPartiallyCurrent ? { ['data-active']: 'true' } : null
                 }
@@ -156,7 +158,7 @@ const LogoContainer = styled(Link)`
     display: none;
   `}
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: -50%;
@@ -208,7 +210,7 @@ const FooterLink = styled(Link)`
     opacity: 0.6;
   }
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: -10%;

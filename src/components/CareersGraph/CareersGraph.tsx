@@ -82,7 +82,7 @@ class CareersGraph extends Component {
                     ref={svg => (this.graph = svg)}
                     animate={animate}
                   >
-                    <CareersGraphSVG />
+                    <CareersGraphSVG aria-hidden="true" />
                   </CareersGraphSVGContainer>
                   <LabelsContainer animate={animate}>
                     <YLabels>

@@ -27,13 +27,20 @@ export default ({
   color = 'white',
   isSubmitting,
 }: ButtonArrowProps) => (
-  <ArrowButton as={as} to={to} onClick={onClick} color={color} role="button">
+  <ArrowButton
+    as={as}
+    to={to}
+    onClick={onClick}
+    color={color}
+    role="button"
+    data-a11y="true"
+  >
     {isSubmitting ? (
       <Spinner />
     ) : (
       <ArrowAnimation color={color}>
         {text}
-        <ArrowRightIcon fill={color} />
+        <ArrowRightIcon aria-hidden="true" fill={color} />
       </ArrowAnimation>
     )}
   </ArrowButton>
@@ -65,7 +72,7 @@ const ArrowButton = styled.button`
     transform: translateX(3rem);
   }
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: -10%;

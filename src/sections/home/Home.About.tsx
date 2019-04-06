@@ -54,7 +54,7 @@ const HomeAbout = () => (
     render={({ glow }) => (
       <>
         <MobileContainer>
-          <Slash />
+          <Slash aria-hidden="true" />
           <MediaContainer>
             <Media critical src={glow.childImageSharp.fluid} />
           </MediaContainer>

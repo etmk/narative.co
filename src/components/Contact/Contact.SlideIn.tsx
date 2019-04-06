@@ -18,9 +18,9 @@ function ContactSlideIn() {
     if (showContact) {
       scrollable('disable')
 
-      function handleEscKeyPress({ key }) {
-        if (key === 'Escape') {
-          toggleContact()
+      function handleEscKeyPress(event: KeyboardEvent) {
+        if (event.key === 'Escape') {
+          toggleContact(event)
         }
       }
 
@@ -34,7 +34,11 @@ function ContactSlideIn() {
 
   return (
     <Frame tabIndex={showContact ? 0 : -1} aria-hidden={!showContact}>
-      <CloseContainer onClick={toggleContact} animation={showContact}>
+      <CloseContainer
+        onClick={toggleContact}
+        animation={showContact}
+        data-a11y="true"
+      >
         <ExIcon />
         <Hidden>Close Contact Form</Hidden>
       </CloseContainer>
@@ -157,7 +161,7 @@ const CloseContainer = styled.button`
     transform: scale(1);
   }
 
-  &:focus {
+  &[data-a11y='true']:focus {
     border: 2px solid ${p => p.theme.colors.purple};
   }
 `

@@ -74,11 +74,11 @@ const StyledLink = styled(Link)`
   align-items: center;
   width: 100%;
 
-  &:hover h2 {
+  &:hover h3 {
     color: ${p => p.theme.colors.purple};
   }
 
-  &:focus h2 {
+  &:focus h3 {
     color: ${p => p.theme.colors.purple};
     text-decoration: underline;
   }

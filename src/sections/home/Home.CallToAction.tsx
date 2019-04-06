@@ -42,10 +42,10 @@ function HomeCallToAction() {
   const buttonRef = useRef()
 
   useEffect(() => {
-    function handleKeyUp(event) {
+    function handleKeyUp(event: KeyboardEvent) {
       if (event.keyCode === 13 || event.keyCode === 32) {
         event.preventDefault()
-        toggleContact()
+        toggleContact(event)
       }
     }
 
@@ -64,10 +64,10 @@ function HomeCallToAction() {
               <Frame narrow>
                 <Nav inView={visiblePercentage > 80}>
                   <LogoContainer>
-                    <Logo fill="rgba(255,255,255,0.3)" aria-hidden={true} />
+                    <Logo fill="rgba(255,255,255,0.3)" aria-hidden="true" />
                   </LogoContainer>
                   <MobileLogoContainer>
-                    <MobileLogo />
+                    <MobileLogo aria-hidden="true" />
                   </MobileLogoContainer>
                   <NavLinks>
                     {ctaLinks.map(link => {
@@ -79,7 +79,7 @@ function HomeCallToAction() {
                             tabIndex={-1}
                             onClick={event => {
                               event.preventDefault()
-                              toggleContact()
+                              toggleContact(event)
                             }}
                           >
                             {link.text}
@@ -112,8 +112,9 @@ function HomeCallToAction() {
                     animation={showContact}
                     onClick={toggleContact}
                     ref={buttonRef}
+                    data-a11y="true"
                   >
-                    Contact Us <ChevronDownIcon />
+                    Contact Us <ChevronDownIcon aria-hidden="true" />
                   </CTAText>
                 </CallToAction>
                 <MobileCopy>More about Narative</MobileCopy>
@@ -309,7 +310,7 @@ const CTAText = styled.button`
   opacity: ${p => (p.animation ? 0 : 1)};
   transition: opacity 0.3s linear ${p => (p.animation ? 0 : '0.4s')};
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: -10%;
@@ -403,6 +404,7 @@ const MobileLogo = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
+    <title>Narative</title>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

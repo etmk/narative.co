@@ -188,7 +188,7 @@ function Time() {
 function Code() {
   return (
     <CodeContainer>
-      <VectorTop>
+      <VectorTop aria-hidden="true">
         {`<svg width="23" height="30" viewBox="0 0 23 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 30H22.9091V26.4595H0V30Z" fill="#111216"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00598145 24.7176L7.01982 19.7873L7.01897 15.2965L0.00598145 10.3745V24.7176Z" fill="#111216"/>
@@ -196,7 +196,7 @@ function Code() {
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0.0065918 0V8.62637L22.8961 24.7297L22.8948 16.0316L0.0065918 0Z" fill="#111216"/>
           </svg>`}
       </VectorTop>
-      <VectorBottom>
+      <VectorBottom aria-hidden="true">
         {`<svg width="23" height="30" viewBox="0 0 23 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 30H22.9091V26.4595H0V30Z" fill="white"/>
             <path fill-rule="evenodd" clip-rule="evenodd

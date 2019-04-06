@@ -46,7 +46,7 @@ const GridItem = ({
   const hasOverflow = narrow && article.title.length > 35
 
   return (
-    <ArticleLink to={`/articles/${article.slug}`}>
+    <ArticleLink to={`/articles/${article.slug}`} data-a11y="true">
       <Item>
         <Image background={article.backgroundColor}>
           <Media src={article.backgroundImage.fluid} />
@@ -206,7 +206,7 @@ const ArticleLink = styled(Link)`
     color: ${p => p.theme.colors.purple};
   }
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: -2%;

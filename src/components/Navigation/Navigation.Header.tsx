@@ -167,12 +167,15 @@ class Navigation extends Component<{}, NavigationState> {
             <Section>
               <NavContainer>
                 {previousPath && showPreviousPath && (
-                  <LogoBack onClick={() => window.history.back()}>
+                  <LogoBack
+                    onClick={() => window.history.back()}
+                    data-a11y="true"
+                  >
                     <BackChevron />
                   </LogoBack>
                 )}
                 <LogoMask>
-                  <LogoContainer to="/" aria-label="Back home">
+                  <LogoContainer to="/" aria-label="Back home" data-a11y="true">
                     <Logo fill={fill} />
                   </LogoContainer>
                 </LogoMask>
@@ -183,6 +186,7 @@ class Navigation extends Component<{}, NavigationState> {
                     air-expanded={active}
                     aria-haspopup="true"
                     aria-controls="menu-list"
+                    data-a11y="true"
                   >
                     <LeftToggle
                       active={active}
@@ -227,12 +231,13 @@ const NavItems = ({ active, handleClick, handleOutsideClick }) => {
             to={nav.to}
             delay={delay}
             as={Link}
-            tabindex={active ? 0 : -1}
+            tabIndex={active ? 0 : -1}
             onClick={event => {
               event.preventDefault()
-              toggleContact()
+              toggleContact(event)
               handleOutsideClick()
             }}
+            data-a11y="true"
             getProps={({ isPartiallyCurrent }) =>
               isPartiallyCurrent ? { ['data-active']: 'true' } : null
             }
@@ -251,8 +256,9 @@ const NavItems = ({ active, handleClick, handleOutsideClick }) => {
           to={nav.to}
           delay={delay}
           as={Link}
-          tabindex={active ? 0 : -1}
+          tabIndex={active ? 0 : -1}
           onClick={event => handleClick(event, nav.to)}
+          data-a11y="true"
           getProps={({ isPartiallyCurrent }) =>
             isPartiallyCurrent ? { ['data-active']: 'true' } : null
           }
@@ -303,7 +309,7 @@ const LogoBack = styled.button`
     transform: translateX(-4px);
   }
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: 0;
@@ -329,7 +335,7 @@ const LogoContainer = styled(Link)`
     opacity: 0.6;
   }
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: -10%;
@@ -358,7 +364,7 @@ const ToggleContainer = styled.button`
   right: -10px;
   cursor: pointer;
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: 0;
@@ -519,16 +525,16 @@ const NavAnchor = styled.a`
     outline: none;
   }
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    bottom: 4px;
-    height: 1px;
-    width: 20px;
-    background: ${p => p.theme.color};
+    left: -25%;
+    top: 2%;
+    width: 150%;
+    height: 100%;
+    border: 2px solid ${p => p.theme.colors.purple};
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 5px;
   }
 
   ${mediaqueries.phablet`

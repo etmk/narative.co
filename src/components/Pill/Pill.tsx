@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 const Pill = ({ text }: { text: string }) => (
   <Frame>
-    <Text> {text}</Text>
-    <PillOutline />
+    <Text>{text}</Text>
+    <PillOutline aria-hidden="true" />
   </Frame>
 )
 

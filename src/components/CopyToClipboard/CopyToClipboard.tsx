@@ -39,6 +39,7 @@ class CopyToClipboard extends Component<
       <CopyIconContainer
         copied={copied}
         onClick={() => this.copyToClipboardOnClick(copyOnClick)}
+        data-a11y="true"
       >
         {copied ? (
           <CopyIconText>
@@ -65,7 +66,7 @@ const CopyIconContainer = styled.button`
     margin-left: 3px;
   }
 
-  &:focus::after {
+  &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
     left: -50%;
@@ -110,6 +111,8 @@ const CopyIcon = ({ fill = 'white' }) => (
     viewBox="0 0 13 15"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    style={{ pointerEvents: 'none' }}
   >
     <path
       d="M9.54545 0H1.36364C0.613636 0 0 0.613636 0 1.36364V10.9091H1.36364V1.36364H9.54545V0ZM11.5909 2.72727H4.09091C3.34091 2.72727 2.72727 3.34091 2.72727 4.09091V13.6364C2.72727 14.3864 3.34091 15 4.09091 15H11.5909C12.3409 15 12.9545 14.3864 12.9545 13.6364V4.09091C12.9545 3.34091 12.3409 2.72727 11.5909 2.72727ZM11.5909 13.6364H4.09091V4.09091H11.5909V13.6364Z"

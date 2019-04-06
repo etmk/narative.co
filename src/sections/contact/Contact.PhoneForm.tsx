@@ -22,8 +22,13 @@ class PhoneForm extends Component {
     submitted: false,
   }
 
-  handleSubmit = async (values, { setSubmitting }) => {
+  handleSubmit = async (values, { setErrors, setSubmitting }) => {
     const { phone } = values
+
+    // Throws error if empty number on submit since we don't validate on blur
+    if (!phone) {
+      return setErrors({ phone: 'Full number required' })
+    }
 
     const method = 'post'
     const endpoint = '/contact/phone'
