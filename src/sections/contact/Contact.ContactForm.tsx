@@ -238,6 +238,10 @@ const ContactWithEmailText = styled.div`
   button {
     text-decoration: underline;
     font-weight: 600;
+
+    &:focus {
+      color: ${p => p.theme.colors.purple};
+    }
   }
 `
 

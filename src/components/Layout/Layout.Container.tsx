@@ -6,6 +6,7 @@ import throttle from 'lodash/throttle'
 
 import NavigationDesktop from '@components/Navigation/Navigation.Header'
 import NavigationMobile from '@components/Navigation/Navigation.Mobile.Header'
+import Footer from '@components/Navigation/Navigation.Footer'
 
 import { calculateStyles } from './Layout.Hero.Mobile'
 import { ExIcon } from '../../icons/ui'
@@ -26,6 +27,7 @@ interface LayoutProps {
     offset?: boolean
     theme?: string
   }
+  withFooter?: boolean
 }
 
 interface LayoutState {
@@ -49,6 +51,10 @@ class LayoutContainer extends Component<LayoutProps, LayoutState> {
       offset: true,
       fixed: true,
       low: false,
+    },
+    footer: {
+      visible: true,
+      theme: 'dark',
     },
   }
 
@@ -187,7 +193,7 @@ class LayoutContainer extends Component<LayoutProps, LayoutState> {
   }
 
   render() {
-    const { background, children, nav } = this.props
+    const { background, children, nav, footer } = this.props
     const {
       active,
       mask,
@@ -212,45 +218,48 @@ class LayoutContainer extends Component<LayoutProps, LayoutState> {
             theme={navTheme}
             ref={this.container}
           >
-            {/*
-             * This mobile navigation has to be within the main SiteContainer because
-             * it's absolutely positioned and needs the relative parent to properly
-             * animate opened and closed
-             */}
+            <main>
+              {/*
+               * This mobile navigation has to be within the main SiteContainer because
+               * it's absolutely positioned and needs the relative parent to properly
+               * animate opened and closed
+               */}
 
-            <MobileScroll fixed={nav.fixed} style={calculateStyles(position)}>
-              <MobileHamburger
-                fixed={nav.fixed}
-                active={active}
-                onClick={
-                  showPreviousPath
-                    ? () => navigate(`/${previousPath.split('/')[1]}`)
-                    : this.openMobileNav
-                }
-                aria-label="Mobile Navigation Button"
-              >
-                {showPreviousPath ? (
-                  <ExIcon />
-                ) : (
-                  <>
-                    <LeftToggle active={active} theme={navTheme} />
-                    <RightToggle theme={navTheme} />
-                  </>
-                )}
-              </MobileHamburger>
+              <MobileScroll fixed={nav.fixed} style={calculateStyles(position)}>
+                <MobileHamburger
+                  fixed={nav.fixed}
+                  active={active}
+                  onClick={
+                    showPreviousPath
+                      ? () => navigate(`/${previousPath.split('/')[1]}`)
+                      : this.openMobileNav
+                  }
+                  aria-label="Mobile Navigation Button"
+                >
+                  {showPreviousPath ? (
+                    <ExIcon />
+                  ) : (
+                    <>
+                      <LeftToggle active={active} theme={navTheme} />
+                      <RightToggle theme={navTheme} />
+                    </>
+                  )}
+                </MobileHamburger>
 
-              {/* The desktop navigation also sits in the SiteContainer */}
-              <NavigationDesktop nav={nav} />
-            </MobileScroll>
+                {/* The desktop navigation also sits in the SiteContainer */}
+                <NavigationDesktop nav={nav} />
+              </MobileScroll>
 
-            {/**
-             * Finally, this Mask is only applied when navigation to a new page. It's how
-             * we're able to make it feel smooth between mobile navigations
-             */}
-            <MaskMobile shouldMask={mask} theme={navTheme} />
+              {/**
+               * Finally, this Mask is only applied when navigation to a new page. It's how
+               * we're able to make it feel smooth between mobile navigations
+               */}
+              <MaskMobile shouldMask={mask} theme={navTheme} />
 
-            {/*The rest of the site lives in children!*/}
-            {children}
+              {/*The rest of the site lives in children!*/}
+              {children}
+              {footer.visible && <Footer mode={footer.theme} />}
+            </main>
           </SiteContainer>
         </Swipeable>
       </>
@@ -260,7 +269,7 @@ class LayoutContainer extends Component<LayoutProps, LayoutState> {
 
 export default LayoutContainer
 
-const SiteContainer = styled.main`
+const SiteContainer = styled.div`
   position: ${p => (p.active || p.mask ? 'fixed' : 'relative')};
   background: ${p =>
     p.background ||

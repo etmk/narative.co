@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 
 import Layout from '@components/Layout'
 import SEO from '@components/SEO'
-import Footer from '@components/Navigation/Navigation.Footer'
 
 import CareersHero from '../sections/careers/Careers.Hero'
 import CareersBody from '../sections/careers/Careers.Body'
@@ -29,7 +28,6 @@ function CareersPage({ data, location }) {
       />
       <CareersHero />
       <CareersBody />
-      <Footer />
     </Layout>
   )
 }

@@ -15,6 +15,10 @@ interface LayoutProps {
     offset?: boolean
     theme?: string
   }
+  footer: {
+    visible?: boolean
+    theme?: string
+  }
 }
 
 /**

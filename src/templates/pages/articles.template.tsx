@@ -30,8 +30,12 @@ function ArticlesPage({ data, location, pageContext }) {
     theme: 'light',
   }
 
+  const footerConfig = {
+    visible: false,
+  }
+
   return (
-    <Layout nav={navConfig}>
+    <Layout nav={navConfig} footer={footerConfig}>
       <>
         <SEO
           title={seo.title}

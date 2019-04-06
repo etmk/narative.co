@@ -7,7 +7,6 @@ import Layout from '@components/Layout'
 import Section from '@components/Section'
 import Heading from '@components/Heading'
 import LayoutHeroMobile from '@components/Layout/Layout.Hero.Mobile'
-import Footer from '@components/Navigation/Navigation.Footer'
 import Media from '@components/Media/Media.Img'
 import ScrollIndicator from '@components/ScrollIndicator'
 import Pill from '@components/Pill'
@@ -17,6 +16,203 @@ import mediaqueries from '@styles/media'
 import transitions from '@styles/transitions'
 
 import LabsPreview from '../sections/labs/Labs.Preview'
+
+/**
+ * The labs page is a bit of a mess with the inlined Product Array but it
+ * works for now. In the event that we redesign this page it's recommended
+ * to start a new file to handle things neater!
+ */
+
+function LabsPage({ data, location }) {
+  const {
+    allContentfulPage,
+    hero,
+    heroBody,
+    heroScreen,
+    needlBackground,
+    feyBackground,
+  } = data
+  const { seo } = allContentfulPage.edges[0].node
+  const pageBackground = 'linear-gradient(180deg, #08080b 50%, #191D23 100%)'
+  const navConfig = {
+    fixed: true,
+    theme: 'light',
+    offset: true,
+  }
+
+  // Fade in the text as we do on all the headings
+  const [animation, setAnimation] = useState('')
+
+  // Start the bulb up animation once the image has laoded
+  const [showScreen, setShowScreen] = useState(false)
+
+  useEffect(() => {
+    startAnimation(() => {
+      setAnimation('start')
+    })
+  }, [])
+
+  // Inlining our products to get the right variables we need in scope!
+  const products = [
+    {
+      logo: FeyLogo,
+      background: feyBackground.childImageSharp.fluid,
+      backgroundColor: '#1A1A1A',
+      excerpt:
+        'Sick of tracking your trades across Evernote, Excel files and countless screenshots? Fey gives you the complete picture of your portfolio, with fast data entry, always-on risk analysis and more.',
+      children: (
+        <>
+          <HorizontalRule />
+          <div>
+            <LinkToProduct
+              target="_blank"
+              data-a11y="true"
+              href="https://feyapp.com"
+            >
+              <GlobeIcon aria-hidden="true" />
+              Visit website
+            </LinkToProduct>
+            <LinkToProduct
+              target="_blank"
+              data-a11y="true"
+              href="https://narative.co/design/open/fey"
+            >
+              <FigmaIcon aria-hidden="true" /> View in Figma
+            </LinkToProduct>
+          </div>
+        </>
+      ),
+    },
+    {
+      logo: NeedlLogo,
+      background: needlBackground.childImageSharp.fluid,
+      backgroundColor: '#D6D9DE',
+      excerpt:
+        "Whether you're looking to get inked or you're a tattoo artist yourself, this upcoming app will help you get what you need. Find artists and styles, schedule appointments, book flashes and get paid.",
+      children: (
+        <>
+          <HorizontalRule dark />
+          <LinkToProduct dark as="div">
+            Coming: when it’s ready
+          </LinkToProduct>
+        </>
+      ),
+    },
+  ]
+
+  return (
+    <Layout nav={navConfig} background={pageBackground}>
+      <>
+        <SEO
+          title={seo.title}
+          description={seo.description}
+          image={seo.image.file.url}
+          pathname={location.pathname}
+        />
+        <LayoutHeroMobile>
+          <HeroSection>
+            <ContentContainer>
+              <div />
+              <TextContainer animation={animation}>
+                <Pill text="Labs" />
+                <Heading.h1>
+                  Whether with our clients or all by ourselves, we're always
+                  busy building something new.
+                </Heading.h1>
+                <MainText>
+                  Take a peek at the products we're creating in-house at
+                  Narative.
+                </MainText>
+              </TextContainer>
+              <ScrollIndicator />
+            </ContentContainer>
+
+            <HeroImage>
+              <Media
+                critical
+                onLoad={() => setShowScreen(true)}
+                src={heroBody.childImageSharp.fluid}
+              />
+              <div
+                style={{
+                  opacity: showScreen ? 1 : 0,
+                  transition: 'opacity 1s ease 0.5s',
+                }}
+              >
+                <Media critical src={heroScreen.childImageSharp.fluid} />
+              </div>
+            </HeroImage>
+          </HeroSection>
+        </LayoutHeroMobile>
+        <HeroImageMobile>
+          <Media critical src={hero.childImageSharp.fluid} />
+        </HeroImageMobile>
+        <Section narrow>
+          {products.map(product => (
+            <LabsPreview key={product.excerpt} product={product} />
+          ))}
+        </Section>
+      </>
+    </Layout>
+  )
+}
+
+export default LabsPage
+
+export const pageQuery = graphql`
+  query LabsPageQuery {
+    allContentfulPage(filter: { pageName: { eq: "Labs" } }) {
+      edges {
+        node {
+          seo {
+            title
+            description
+            image {
+              file {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+    hero: file(name: { regex: "/labs-hero-phone/" }) {
+      childImageSharp {
+        fluid(maxWidth: 1060, quality: 100) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
+      }
+    }
+    heroBody: file(name: { regex: "/labs-floating-phone-body/" }) {
+      childImageSharp {
+        fluid(maxWidth: 1060, quality: 100) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
+      }
+    }
+    heroScreen: file(name: { regex: "/labs-floating-phone-screen/" }) {
+      childImageSharp {
+        fluid(maxWidth: 1060, quality: 100) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
+      }
+    }
+    needlBackground: file(name: { regex: "/needl-labs/" }) {
+      childImageSharp {
+        fluid(maxWidth: 1140, maxHeight: 380, quality: 100) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
+      }
+    }
+    feyBackground: file(name: { regex: "/fey-labs/" }) {
+      childImageSharp {
+        fluid(maxWidth: 1140, maxHeight: 380, quality: 100) {
+          ...GatsbyImageSharpFluid_noBase64
+        }
+      }
+    }
+  }
+`
 
 const HeroSection = styled(Section)`
   display: flex;
@@ -251,201 +447,3 @@ const FigmaIcon = () => (
     />
   </svg>
 )
-
-/**
- * The labs page is a bit of a mess with the inlined Product Array but it
- * works for now. In the event that we redesign this page it's recommended
- * to start a new file to handle things neater!
- */
-
-function LabsPage({ data, location }) {
-  const {
-    allContentfulPage,
-    hero,
-    heroBody,
-    heroScreen,
-    needlBackground,
-    feyBackground,
-  } = data
-  const { seo } = allContentfulPage.edges[0].node
-  const pageBackground = 'linear-gradient(180deg, #08080b 50%, #191D23 100%)'
-  const navConfig = {
-    fixed: true,
-    theme: 'light',
-    offset: true,
-  }
-
-  // Fade in the text as we do on all the headings
-  const [animation, setAnimation] = useState('')
-
-  // Start the bulb up animation once the image has laoded
-  const [showScreen, setShowScreen] = useState(false)
-
-  useEffect(() => {
-    startAnimation(() => {
-      setAnimation('start')
-    })
-  }, [])
-
-  // Inlining our products to get the right variables we need in scope!
-  const products = [
-    {
-      logo: FeyLogo,
-      background: feyBackground.childImageSharp.fluid,
-      backgroundColor: '#1A1A1A',
-      excerpt:
-        'Sick of tracking your trades across Evernote, Excel files and countless screenshots? Fey gives you the complete picture of your portfolio, with fast data entry, always-on risk analysis and more.',
-      children: (
-        <>
-          <HorizontalRule />
-          <div>
-            <LinkToProduct
-              target="_blank"
-              data-a11y="true"
-              href="https://feyapp.com"
-            >
-              <GlobeIcon aria-hidden="true" />
-              Visit website
-            </LinkToProduct>
-            <LinkToProduct
-              target="_blank"
-              data-a11y="true"
-              href="https://narative.co/design/open/fey"
-            >
-              <FigmaIcon aria-hidden="true" /> View in Figma
-            </LinkToProduct>
-          </div>
-        </>
-      ),
-    },
-    {
-      logo: NeedlLogo,
-      background: needlBackground.childImageSharp.fluid,
-      backgroundColor: '#D6D9DE',
-      excerpt:
-        "Whether you're looking to get inked or you're a tattoo artist yourself, this upcoming app will help you get what you need. Find artists and styles, schedule appointments, book flashes and get paid.",
-      children: (
-        <>
-          <HorizontalRule dark />
-          <LinkToProduct dark as="div">
-            Coming: when it’s ready
-          </LinkToProduct>
-        </>
-      ),
-    },
-  ]
-
-  return (
-    <Layout nav={navConfig} background={pageBackground}>
-      <>
-        <SEO
-          title={seo.title}
-          description={seo.description}
-          image={seo.image.file.url}
-          pathname={location.pathname}
-        />
-        <LayoutHeroMobile>
-          <HeroSection>
-            <ContentContainer>
-              <div />
-              <TextContainer animation={animation}>
-                <Pill text="Labs" />
-                <Heading.h1>
-                  Whether with our clients or all by ourselves, we're always
-                  busy building something new.
-                </Heading.h1>
-                <MainText>
-                  Take a peek at the products we're creating in-house at
-                  Narative.
-                </MainText>
-              </TextContainer>
-              <ScrollIndicator />
-            </ContentContainer>
-
-            <HeroImage>
-              <Media
-                critical
-                onLoad={() => setShowScreen(true)}
-                src={heroBody.childImageSharp.fluid}
-              />
-              <div
-                style={{
-                  opacity: showScreen ? 1 : 0,
-                  transition: 'opacity 1s ease 0.5s',
-                }}
-              >
-                <Media critical src={heroScreen.childImageSharp.fluid} />
-              </div>
-            </HeroImage>
-          </HeroSection>
-        </LayoutHeroMobile>
-        <HeroImageMobile>
-          <Media critical src={hero.childImageSharp.fluid} />
-        </HeroImageMobile>
-        <Section narrow>
-          {products.map(product => (
-            <LabsPreview key={product.excerpt} product={product} />
-          ))}
-        </Section>
-        <Footer />
-      </>
-    </Layout>
-  )
-}
-
-export default LabsPage
-
-export const pageQuery = graphql`
-  query LabsPageQuery {
-    allContentfulPage(filter: { pageName: { eq: "Labs" } }) {
-      edges {
-        node {
-          seo {
-            title
-            description
-            image {
-              file {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-    hero: file(name: { regex: "/labs-hero-phone/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1060, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    heroBody: file(name: { regex: "/labs-floating-phone-body/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1060, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    heroScreen: file(name: { regex: "/labs-floating-phone-screen/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1060, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    needlBackground: file(name: { regex: "/needl-labs/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1140, maxHeight: 380, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    feyBackground: file(name: { regex: "/fey-labs/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1140, maxHeight: 380, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-  }
-`

@@ -22,7 +22,12 @@ function IndexPage({ data, location }) {
   }
 
   return (
-    <Layout nav={navConfig} location={location} background="#08080b">
+    <Layout
+      nav={navConfig}
+      location={location}
+      background="#08080b"
+      withFooter={false}
+    >
       <>
         <SEO
           title={contentful.seo.title}

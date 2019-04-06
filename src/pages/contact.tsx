@@ -69,7 +69,7 @@ class ContactPage extends Component<{}, { animation: string }> {
     }
 
     return (
-      <Layout nav={navConfig} background="#08080b">
+      <Layout nav={navConfig} background="#08080b" withFooter={false}>
         <Fragment>
           <SEO
             title="Contact"

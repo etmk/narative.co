@@ -58,7 +58,7 @@ class CopyToClipboard extends Component<
 
 export default CopyToClipboard
 
-const CopyIconContainer = styled.button`
+const CopyIconContainer = styled.div`
   position: relative;
   cursor: ${p => (p.copied ? 'initial' : 'pointer')};
 

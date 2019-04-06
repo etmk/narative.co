@@ -17,7 +17,7 @@ function NotFound({ data, location }) {
         pathname={location.pathname}
       />
       <div style={{ overflow: 'hidden' }}>
-        <Layout>
+        <Layout withFooter={false}>
           <Section hideOverflow>
             <GridContainer>
               <TextContainer>
