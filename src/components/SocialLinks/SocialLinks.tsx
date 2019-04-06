@@ -45,6 +45,7 @@ const SocialLinks = ({ fill = 'white' }: { fill: string }) => (
 export default SocialLinks
 
 const SocialIconContainer = styled.a`
+  position: relative;
   margin-left: 3.2rem;
   text-decoration: none;
 
@@ -54,6 +55,18 @@ const SocialIconContainer = styled.a`
 
   &:last-child {
     margin-right: 0;
+  }
+
+  &:focus::after {
+    content: '';
+    position: absolute;
+    left: -50%;
+    top: -10%;
+    width: 200%;
+    height: 120%;
+    border: 2px solid ${p => p.theme.colors.purple};
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 5px;
   }
 
   ${mediaqueries.tablet`

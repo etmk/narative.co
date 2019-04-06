@@ -84,7 +84,7 @@ class Progress extends Component<IProgress, { value: number; headings: [] }> {
     const progressOffset = { transform: `translateY(${value - 100}%)` }
 
     return (
-      <Frame>
+      <Frame tabIndex={-1}>
         <Trackline aria-hidden="true" value={value} max={100}>
           <ProgressLine style={progressOffset} />
         </Trackline>

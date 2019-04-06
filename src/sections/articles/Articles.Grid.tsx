@@ -224,6 +224,7 @@ const TimeToRead = styled.div`
 `
 
 const ArticleLink = styled(Link)`
+  position: relative;
   display: block;
   width: 100%;
   height: 100%;
@@ -234,14 +235,27 @@ const ArticleLink = styled(Link)`
   transition: transform 0.33s var(--ease-out-quart);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
-  &:hover ${Image} {
+  &:hover ${Image}, &:focus ${Image} {
     transform: translateY(-1px);
     box-shadow: 0 50px 80px -20px rgba(0, 0, 0, 0.27),
       0 30px 50px -30px rgba(0, 0, 0, 0.3);
   }
 
-  &:hover h2 {
+  &:hover h2,
+  &:focus h2 {
     color: ${p => p.theme.colors.purple};
+  }
+
+  &:focus::after {
+    content: '';
+    position: absolute;
+    left: -2%;
+    top: -2%;
+    width: 104%;
+    height: 104%;
+    border: 3px solid ${p => p.theme.colors.purple};
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 5px;
   }
 
   ${mediaqueries.tablet`
@@ -292,8 +306,13 @@ const Blockquote = styled(Link)`
   margin-bottom: 30px;
   transition: color 0.3s ease-in-out;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: #000;
+  }
+
+  &:focus {
+    text-decoration: underline;
   }
 
   ${mediaqueries.tablet`

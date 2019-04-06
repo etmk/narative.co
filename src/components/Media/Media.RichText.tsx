@@ -117,7 +117,8 @@ const Content = styled.article`
       opacity: 0.85;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       text-decoration: underline;
     }
   }

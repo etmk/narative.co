@@ -120,7 +120,7 @@ const StyledLink = styled(Link)`
     top: -50%;
     width: 120%;
     height: 200%;
-    border: 1px solid ${p => p.theme.colors.purple};
+    border: 2px solid ${p => p.theme.colors.purple};
     background: rgba(255, 255, 255, 0.01);
     border-radius: 5px;
   }

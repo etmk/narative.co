@@ -27,6 +27,7 @@ const ArticlesFeatured = ({ article }: { article: IArticleNode }) => (
           <ButtonArrow
             text="Read more"
             color="#000"
+            as="div"
             onClick={() => navigate(`/articles/${article.slug}`)}
           />
         </Left>
@@ -60,7 +61,6 @@ const Frame = styled.div`
   display: flex;
   padding: 60px 0 100px;
   align-items: center;
-  overflow: hidden;
 
   ${mediaqueries.tablet`
     display: none;
@@ -74,6 +74,11 @@ const StyledLink = styled(Link)`
 
   &:hover h2 {
     color: ${p => p.theme.colors.purple};
+  }
+
+  &:focus h2 {
+    color: ${p => p.theme.colors.purple};
+    text-decoration: underline;
   }
 `
 

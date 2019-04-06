@@ -60,12 +60,12 @@ function CareersAccordian() {
                   <a href="mailto:careers@narative.co">careers@narative.co</a>.
                   <HideOnMobile> We love meeting new people!</HideOnMobile>
                 </span>
-                <button
+                <div
                   onClick={() => setCopied(true)}
                   style={{ justifySelf: 'flex-end' }}
                 >
                   <CopyToClipboard copyOnClick="careers@narative.co" />
-                </button>
+                </div>
               </AccordianCareersEmail>
             </AccordianContainer>
           )

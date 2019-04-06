@@ -126,6 +126,7 @@ const HorizontalRule = styled.hr`
 `
 
 const LinkToProduct = styled.a`
+  position: relative;
   font-weight: 600;
   font-size: 16px;
   color: ${p => (p.dark ? p.theme.colors.grey : '#fff')};
@@ -136,6 +137,18 @@ const LinkToProduct = styled.a`
 
   &:nth-child(2) {
     margin-left: 30px;
+  }
+
+  &:focus::after {
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -42%;
+    width: 120%;
+    height: 200%;
+    border: 2px solid ${p => p.theme.colors.purple};
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 5px;
   }
 
   ${mediaqueries.tablet`

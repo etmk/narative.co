@@ -57,11 +57,23 @@ class CopyToClipboard extends Component<
 
 export default CopyToClipboard
 
-const CopyIconContainer = styled.div`
+const CopyIconContainer = styled.button`
+  position: relative;
   cursor: ${p => (p.copied ? 'initial' : 'pointer')};
 
   svg {
     margin-left: 3px;
+  }
+
+  &:focus::after {
+    content: '';
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    border: 2px solid ${p => p.theme.colors.purple};
+    border-radius: 5px;
   }
 `
 
