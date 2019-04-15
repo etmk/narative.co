@@ -127,6 +127,10 @@ const GridContainer = styled.div`
   min-height: 600px;
   width: 100%;
 
+  ${mediaqueries.desktop_medium`
+    min-height: 360px;
+  `};
+
   ${mediaqueries.desktop`
     height: initial
     grid-template-columns: 1fr;

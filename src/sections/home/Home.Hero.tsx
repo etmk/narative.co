@@ -116,7 +116,11 @@ const ContentContainer = styled.div`
     top: -40px;
   `};
 
-  @media screen and (max-height: 670px) {
+  @media screen and (max-height: 648px) {
     top: -60px;
   }
+
+  ${mediaqueries.desktop_medium`
+    min-height: 360px;
+  `};
 `

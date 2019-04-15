@@ -290,7 +290,7 @@ const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  ${mediaqueries.tablet`
+  ${mediaqueries.desktop_medium`
     padding-top: 50px;
   `};
 `

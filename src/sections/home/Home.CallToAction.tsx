@@ -139,7 +139,7 @@ const Background = styled.div`
 const Frame = styled.div`
   position: relative;
   height: 100vh;
-  min-height: 800px;
+  min-height: 600px;
   overflow: hidden;
 
   &::before {
@@ -160,6 +160,10 @@ const Frame = styled.div`
     min-height: 88vh;
     overflow: visible;
   `}
+
+  @media screen and (max-height: 700px) {
+    min-height: 500px;
+  }
 `
 
 const Nav = styled(Section)`
@@ -172,6 +176,10 @@ const Nav = styled(Section)`
   transition: opacity ${p => (p.inView ? '1s' : '0.5s')} linear,
     transform 0.5s ease-out;
   z-index: 1;
+
+  @media screen and (max-height: 700px) {
+    padding-top: 50px;
+  }
 
   ${mediaqueries.desktop`
     display: flex;
@@ -251,6 +259,10 @@ const Text = styled.h2`
   letter-spacing: -0.5px;
 
   color: transparent;
+
+  @media screen and (max-height: 700px) {
+    font-size: 72px;
+  }
 
   ${mediaqueries.desktop`
     font-size: 60px;

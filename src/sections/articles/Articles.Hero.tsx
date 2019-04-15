@@ -174,6 +174,10 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
+  ${mediaqueries.desktop_medium`
+    min-height: 360px;
+  `};
+
   ${mediaqueries.phablet`
     height: calc(100vh - 90px);
     padding: 0;
