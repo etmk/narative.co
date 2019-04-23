@@ -178,6 +178,10 @@ const ContentContainer = styled.div`
     min-height: 360px;
   `};
 
+  @media screen and (max-height: 800px) {
+    min-height: 360px;
+  }
+
   ${mediaqueries.phablet`
     height: calc(100vh - 90px);
     padding: 0;

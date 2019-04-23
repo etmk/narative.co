@@ -459,6 +459,12 @@ const Value = styled.div`
       margin-bottom: 15px;
     }
   `}
+
+  @media screen and (max-height: 800px) {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
 `
 
 const Transform = styled.div`

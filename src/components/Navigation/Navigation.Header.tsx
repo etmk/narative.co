@@ -293,6 +293,10 @@ const NavContainer = styled.div`
   ${mediaqueries.desktop_medium`
     padding-top: 50px;
   `};
+
+  @media screen and (max-height: 800px) {
+    padding-top: 60px;
+  }
 `
 
 const LogoBack = styled.button`

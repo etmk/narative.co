@@ -161,7 +161,7 @@ const Frame = styled.div`
     overflow: visible;
   `}
 
-  @media screen and (max-height: 700px) {
+  @media screen and (max-height: 800px) {
     min-height: 500px;
   }
 `
@@ -177,7 +177,7 @@ const Nav = styled(Section)`
     transform 0.5s ease-out;
   z-index: 1;
 
-  @media screen and (max-height: 700px) {
+  @media screen and (max-height: 800px) {
     padding-top: 50px;
   }
 
@@ -260,7 +260,7 @@ const Text = styled.h2`
 
   color: transparent;
 
-  @media screen and (max-height: 700px) {
+  @media screen and (max-height: 800px) {
     font-size: 72px;
   }
 
