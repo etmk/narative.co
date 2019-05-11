@@ -206,7 +206,7 @@ const NextArticle = styled(Section)`
   display: block;
 `
 
-const FooterNext = styled.h2`
+const FooterNext = styled.h3`
   position: relative;
   opacity: 0.25;
   margin-bottom: 100px;

@@ -23,6 +23,10 @@ function handleAccessibilityFocus() {
   })
 }
 
-module.exports = () => {
+module.exports = ({ prevLocation }) => {
   handleAccessibilityFocus()
+
+  if (prevLocation) {
+    localStorage.setItem('previousPath', prevLocation.pathname)
+  }
 }
