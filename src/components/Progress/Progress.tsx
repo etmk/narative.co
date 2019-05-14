@@ -40,7 +40,7 @@ class Progress extends Component<
       this.handleProgressHeadings()
     }
 
-    if (this.state.hasHinted === false && this.state.value > 4) {
+    if (this.state.hasHinted === false && this.state.value > 8) {
       this.setState({ hasHinted: true })
     }
   }
@@ -212,7 +212,7 @@ const Frame = styled.div`
   }
 
   ${p =>
-    p.value < 1 &&
+    p.value < 4 &&
     !p.hasHinted &&
     `
     ${HeadingHover} {
