@@ -93,7 +93,7 @@ class Progress extends Component<
 
   render = () => {
     const { value, headings, hasHinted } = this.state
-    console.log(hasHinted)
+
     return (
       <Frame tabIndex={-1} value={value} hasHinted={hasHinted}>
         <Introduction onClick={() => scrollTo(0, 0)}>

@@ -330,6 +330,10 @@ const LogoBack = styled.button`
     left: -34px;
   `}
 
+  @media screen and (max-height: 800px) {
+    top: 67px;
+  }
+
   ${mediaqueries.tablet`
     display: none;
   `}
