@@ -73,10 +73,14 @@ class Aside extends Component<AsideProps, { value: number }> {
     // If it's past the Hero or less than the Content length, show!
     const show = value > -1 && value < 100.2
 
+    const childrenWithProps = React.Children.map(children, child =>
+      React.cloneElement(child, { show })
+    )
+
     return (
       <Frame right={right}>
         <Align show={show}>
-          <HandleOverlap>{children}</HandleOverlap>
+          <HandleOverlap>{childrenWithProps}</HandleOverlap>
         </Align>
       </Frame>
     )

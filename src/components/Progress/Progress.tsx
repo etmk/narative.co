@@ -10,10 +10,13 @@ export interface IProgress {
   onClose?: () => void
 }
 
-class Progress extends Component<IProgress, { value: number; headings: [] }> {
+class Progress extends Component<
+  IProgress,
+  { value: number; headings: []; hasHinted: boolean }
+> {
   ticking = false
 
-  state = { value: 0, headings: [] }
+  state = { value: 0, headings: [], hasHinted: false }
 
   componentDidMount() {
     this.handleProgressHeadings()
@@ -35,6 +38,10 @@ class Progress extends Component<IProgress, { value: number; headings: [] }> {
       prevProps.height !== this.props.height
     ) {
       this.handleProgressHeadings()
+    }
+
+    if (this.state.hasHinted === false && this.state.value > 4) {
+      this.setState({ hasHinted: true })
     }
   }
 
@@ -85,10 +92,10 @@ class Progress extends Component<IProgress, { value: number; headings: [] }> {
   })
 
   render = () => {
-    const { value, headings } = this.state
-
+    const { value, headings, hasHinted } = this.state
+    console.log(hasHinted)
     return (
-      <Frame tabIndex={-1}>
+      <Frame tabIndex={-1} value={value} hasHinted={hasHinted}>
         <Introduction onClick={() => scrollTo(0, 0)}>
           <Arrow /> <IntoHeading>Introduction</IntoHeading>
         </Introduction>
@@ -203,6 +210,15 @@ const Frame = styled.div`
   &:hover ${HeadingHover}, &:hover ${Introduction} {
     opacity: 1;
   }
+
+  ${p =>
+    p.value < 1 &&
+    !p.hasHinted &&
+    `
+    ${HeadingHover} {
+      opacity: 1;
+    }
+  `}
 `
 
 const Chapter = styled.div`
