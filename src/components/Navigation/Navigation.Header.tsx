@@ -325,6 +325,11 @@ const LogoBack = styled.button`
     border-radius: 5px;
   }
 
+  ${mediaqueries.desktop_medium`
+    top: 57px;
+    left: -34px;
+  `}
+
   ${mediaqueries.tablet`
     display: none;
   `}

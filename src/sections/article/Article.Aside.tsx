@@ -107,5 +107,8 @@ const Align = styled.div`
 
   opacity: ${p => (p.show ? 1 : 0)};
   visibility: ${p => (p.show ? 'visible' : 'hidden')};
-  transition: opacity 0.4s linear, visibility 0.4s linear;
+  transition: ${p =>
+    p.show
+      ? 'opacity 0.4s linear, visibility 0.4s linear'
+      : 'opacity 0.2s linear, visibility 0.4s linear'};
 `

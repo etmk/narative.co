@@ -116,5 +116,5 @@ export default HandleOverlap
 
 const Frame = styled.div`
   opacity: ${p => (p.isOverlapping ? 0 : 1)};
-  transition: opacity 0.3s;
+  transition: ${p => (p.isOverlapping ? 'opacity 0.15s' : 'opacity 0.3s')};
 `
