@@ -68,7 +68,6 @@ const Hero = styled.div`
   z-index: 5;
   min-height: 600px;
   height: 100vh;
-  width: 100vw;
   background: #fafafa;
   display: flex;
   overflow: hidden;
@@ -84,11 +83,11 @@ const HeroContent = styled.div`
   height: 100%;
   left: 0;
   right: 0;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  overflow: hidden;
 
   ${mediaqueries.tablet`
     min-height: 100vh;
