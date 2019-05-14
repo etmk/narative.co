@@ -102,9 +102,6 @@ class LayoutContainer extends Component<LayoutProps, LayoutState> {
       const currentPath = window.location.pathname
       const isNestedRoute = currentPath.split('/')[2]
 
-      console.log(prevState.previousPath)
-      console.log(previousPathFromStorage)
-
       if (prevState.previousPath !== previousPathFromStorage) {
         this.setState({
           previousPath: previousPathFromStorage,
